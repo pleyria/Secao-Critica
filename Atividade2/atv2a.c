@@ -121,7 +121,9 @@ int main(void){
 	scanf("%d", &T);
 
 	// Dimensao do tabuleiro
-	N = 20
+	N = 20;
+	// Numero de geracoes
+	G = 2000;
 
 	// Define o numero de threads
 	omp_set_num_threads(T);
