@@ -1,7 +1,7 @@
 /* Programacao Concorrente e Distribuida
  * Entrega 2
- * Atividade 2 a)
- * Uso da diretiva #pragma omp critical */
+ * Atividade 2 b)
+ * Uso da diretiva #pragma omp for reduction() */
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -104,10 +104,9 @@ int countAlive(int** grid, int N){
 
 #pragma omp parallel private(i, j) shared(count, grid)
 {
-#pragma omp for
+#pragma omp for reduction(+:count)
 	for(i = 0; i < N; i++)
 		for(j = 0; j < N; j++)
-#pragma omp critical
 			count += grid[i][j];
 }
 
