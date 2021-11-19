@@ -37,24 +37,24 @@ public class Car implements Runnable{
     
 
     public void move() {
-	int xposOld =  xpos;
-	if (cartype==REDCAR) {
-            if (inFront.getX() - xpos > 100) {
-                xpos += 4;
-                if (xpos >= bridgeXLeft & xposOld < bridgeXLeft) controller.enterLeft();
-                else if (xpos > bridgeXLeft && xpos < bridgeXMid) {if (ypos > bridgeY) ypos -= 2;}
-                else if (xpos >= bridgeXRight2 && xpos < bridgeXRight) {if (ypos < initY[REDCAR]) ypos += 2;}
-		else if (xpos >= bridgeXRight &&  xposOld < bridgeXRight) controller.leaveRight();
-            }
-	} else {
-            if (xpos-inFront.getX() > 100) {
-                xpos -= 4;
-                if (xpos <= bridgeXRight && xposOld > bridgeXRight) controller.enterRight();
-                else if (xpos < bridgeXRight && xpos > bridgeXMid) {if (ypos < bridgeY) ypos += 2;}
-                else if (xpos <= bridgeXLeft2 && xpos > bridgeXLeft) {if(ypos > initY[BLUECAR]) ypos -= 2;}
-		else if (xpos <= bridgeXLeft && xposOld > bridgeXLeft) controller.leaveLeft();
-            }
-	}
+    	int xposOld =  xpos;
+    	if (cartype==REDCAR) { // VERMELHO (esq --> x --> dir)
+                if (inFront.getX() - xpos > 100) {
+                    xpos += 4;
+                    if (xpos >= bridgeXLeft & xposOld < bridgeXLeft) controller.enterLeft();
+                    else if (xpos > bridgeXLeft && xpos < bridgeXMid) {if (ypos > bridgeY) ypos -= 2;}
+                    else if (xpos >= bridgeXRight2 && xpos < bridgeXRight) {if (ypos < initY[REDCAR]) ypos += 2;}
+    		else if (xpos >= bridgeXRight &&  xposOld < bridgeXRight) controller.leaveRight();
+                }
+    	} else { // AZUL (esq <-- x <-- dir)
+                if (xpos-inFront.getX() > 100) {
+                    xpos -= 4;
+                    if (xpos <= bridgeXRight && xposOld > bridgeXRight) controller.enterRight();
+                    else if (xpos < bridgeXRight && xpos > bridgeXMid) {if (ypos < bridgeY) ypos += 2;}
+                    else if (xpos <= bridgeXLeft2 && xpos > bridgeXLeft) {if(ypos > initY[BLUECAR]) ypos -= 2;}
+    		else if (xpos <= bridgeXLeft && xposOld > bridgeXLeft) controller.leaveLeft();
+                }
+    	}
     }
 
 
