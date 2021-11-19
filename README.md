@@ -2,7 +2,22 @@
 
 ## Atividade 1 - Seção Crítica por espera ocupada
 
+### Descrição
+Implementação do algoritmo de Manna-Pnueli para entrada em seção crítica por algorítmo Cliente-Servidor. Programa feito em linguagem C, com *pthreads*.
+
+### Estrutura dos Arquivos
+O arquivo atv1.c contém o código, com a função principal e as rotinas de execução das threads cliente e servidor.
+
+### Resultados
+Vídeo com apresentação do código e demonstração de funcionamento disponível [neste link](https://drive.google.com/file/d/11a8Vw6DVxDkdMKTGSY1kVSW-U-aSXVou/view?usp=sharing)
+
 ## Atividade 2 - Somatórias, seção crítica e reduções em OpenMP
+
+### Descrição
+
+### Estrutura dos Arquivos
+
+### Resultados
 
 ## Atividade 3 - Seção crítica em Java
 
