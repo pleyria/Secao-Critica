@@ -179,7 +179,7 @@ int main(int argc, char** argv){
 	free(grid);
 	free(newgrid);
 
-	printf("Tempo para contagem de vivos: %lf segundos.\n", end-start);
+	printf("Tempo para contagem de vivos: %.14lf segundos.\n", end-start);
 
 	return 0;
 }

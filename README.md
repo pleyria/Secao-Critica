@@ -14,8 +14,10 @@ Vídeo com apresentação do código e demonstração de funcionamento disponív
 ## Atividade 2 - Somatórias, seção crítica e reduções em OpenMP
 
 ### Descrição
+Programa do Jogo da Vida desenvolvido anteriormente com modificações na função para contar o número final de células vivas.
 
 ### Estrutura dos Arquivos
+Três arquivos de código C: atv2a.c, atv2b e atv2c. Cada um implementa uma versão diferente do problema.
 
 ### Resultados
 
