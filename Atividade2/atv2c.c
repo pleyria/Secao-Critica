@@ -20,7 +20,7 @@ void startGrid(int** grid, int N){
 	for(i=0; i<N; i++)
 		for(j=0; j<N; j++)
 			grid[i][j] = DEAD;
-
+	
 	//GLIDER
 	int lin = 1, col = 1;
 	grid[lin  ][col+1] = 1;
@@ -36,6 +36,7 @@ void startGrid(int** grid, int N){
 	grid[lin+1][col  ] = 1;
 	grid[lin+1][col+1] = 1;
 	grid[lin+2][col+1] = 1;
+	
 }
 
 /* Recebe um grid NxN.
@@ -96,15 +97,34 @@ void simulate(int** grid, int** newgrid, int N){
 }
 
 /* Recebe um grid NxN.
+ * Recebe o numero de threads T.
  * retorna o numero de celulas vivas no tabuleiro. */
-int countAlive(int** grid, int N){
-	int i, j, count;
+int countAlive(int** grid, int N, int T){
+	int i, j, count, write, local;
 
 	count = 0;
+	write = T-1;
 
-	for(i = 0; i < N; i++)
+# pragma omp parallel private(i, j, local) shared(count, write, grid)
+{
+	local = 0;
+#pragma omp for
+	for(i = 0; i < N; i++){
 		for(j = 0; j < N; j++)
-			count += grid[i][j];
+			local += grid[i][j];	// resultado local nao tem controle de SC
+	}
+
+	while(write != omp_get_thread_num())	// espera a vez de entrar na SC
+		printf("[%d]\t(write = %d) esperando...\n", omp_get_thread_num(), write);
+
+	// entra na SC
+	count += local;
+
+	// sai da SC
+	write--;
+
+	printf("[%d]\t(write = %d) acabou!\n", omp_get_thread_num(), write);
+}
 
 	return count;
 }
@@ -157,11 +177,12 @@ int main(int argc, char** argv){
 			simulate(newgrid, grid, N);
 		}
 	}
+	printf("Comeco do fim\n");
 	start = omp_get_wtime();
 	if(i % 2 == 0)
-		printf("Geracao %d: %d vivos.\n", i, countAlive(grid, N));
+		printf("Geracao %d: %d vivos.\n", i, countAlive(grid, N, T));
 	else
-		printf("Geracao %d: %d vivos.\n", i, countAlive(newgrid, N));
+		printf("Geracao %d: %d vivos.\n", i, countAlive(newgrid, N, T));
 	end = omp_get_wtime();
 
 	printf("\nSimulacao Finalizada.\n\n");

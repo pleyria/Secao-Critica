@@ -98,17 +98,20 @@ void simulate(int** grid, int** newgrid, int N){
 /* Recebe um grid NxN.
  * retorna o numero de celulas vivas no tabuleiro. */
 int countAlive(int** grid, int N){
-	int i, j, count;
+	int i, j, count, local;
 
 	count = 0;
 
-#pragma omp parallel private(i, j) shared(count, grid)
+#pragma omp parallel private(i, j, local) shared(count, grid)
 {
+	local = 0;
 #pragma omp for
 	for(i = 0; i < N; i++)
 		for(j = 0; j < N; j++)
+			local += grid[i][j];	// resultado local nao tem controle de SC
+
 #pragma omp critical
-			count += grid[i][j];
+	count += local;			// resultado global: 1 thread por vez
 }
 
 	return count;
