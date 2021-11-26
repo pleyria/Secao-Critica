@@ -14,12 +14,22 @@ Vídeo com apresentação do código e demonstração de funcionamento disponív
 ## Atividade 2 - Somatórias, seção crítica e reduções em OpenMP
 
 ### Descrição
-Programa do Jogo da Vida desenvolvido anteriormente com modificações na função para contar o número final de células vivas.
+Programa do Jogo da Vida desenvolvido anteriormente com modificações na função para contar o número final de células vivas:
+
+* Aceesso à seção crítica com a diretiva #omp critical;
+
+* Acesso à seção crítica com a diretiva #omp for reduction(); e
+
+* Acesso à seção crítica por técnica de espera ociosa.
 
 ### Estrutura dos Arquivos
 Três arquivos de código C: atv2a.c, atv2b e atv2c. Cada um implementa uma versão diferente do problema.
 
 ### Resultados
+
+Resultados de testes de desempenho dos algoritmos disponíveis [nesta tabela](https://docs.google.com/spreadsheets/d/16o27xuvXdSmpG5fCJlWaGSRbCcFKOR3HsqPyBu2SL1Q/edit?usp=sharing).
+
+Vídeo de apresentação da atividade disponível [neste link](https://drive.google.com/file/d/1Uq_cm8ZaufAYehSPdgLokcAVv3KjN451/view?usp=sharing).
 
 ## Atividade 3 - Seção crítica em Java
 

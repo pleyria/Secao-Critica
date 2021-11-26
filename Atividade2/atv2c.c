@@ -1,7 +1,7 @@
 /* Programacao Concorrente e Distribuida
  * Entrega 2
- * Atividade 2 b)
- * Uso da diretiva #pragma omp for reduction() */
+ * Atividade 2 c)
+ * Uso de espera ocupada */
 
 #include <stdlib.h>
 #include <stdio.h>
